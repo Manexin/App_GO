@@ -1,7 +1,8 @@
-FROM golang:alphine
+FROM golang:alpine
 
-ADD ./app /app
-#WORKDIR /app
-RUN go install github.com/golang/example/outyet
-ENTRYPOINT /go/bin/outyet
+RUN mkdir /app 
+ADD ./app /app/ 
+WORKDIR /app 
+RUN go build -o main . 
+CMD ["/app/main"]
 EXPOSE 8080
